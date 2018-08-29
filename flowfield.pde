@@ -41,6 +41,11 @@ void draw()  {
     points.get(i).update();
   }
   zValue += 0.001;
+  
+  if(key == 's')  {
+    key = 0;
+    selectOutput("Choose where to save the image", "saveImage");
+  }
 }
 
 class FieldSpace {
@@ -113,4 +118,10 @@ class Point {
       this.lastPos.y = 0;
     }
   }
+}
+
+void saveImage(File selection) {
+  if (selection != null) {
+    save(selection.getAbsolutePath());
+  } 
 }
