@@ -3,7 +3,7 @@ int spacing = 0;
 float zValue = 0.0;
 
 ArrayList<FieldSpace> spaces = new ArrayList<FieldSpace>(rowCols * rowCols);
-ArrayList<Point> points = new ArrayList<Point>();
+ArrayList<Point> points = new ArrayList<Point>(100);
 
 void setup()  {
   size(1024, 1024); 
@@ -17,16 +17,16 @@ void setup()  {
   for(int i = 0; i < 100; i++)  {
     points.add(new Point());  
   }
-  
+  println(points.size());
   noiseDetail(4, 0.5);
-  background(0);
+  background(10);
   
   //background(255);
   //stroke(25, 5);
   
-  strokeWeight(2);
+  //strokeWeight(2);
   colorMode(HSB, 100);
-  smooth();
+  //smooth();
 }
 
 void draw()  {
@@ -74,7 +74,7 @@ class Point {
   int hue;
   
   void show() {
-    stroke(map(this.pos.x, 0, width, 0, 100), 100, 100, 3);
+    stroke(map(this.pos.x, 0, width, 0, 100), 100, 100, 5);
     line(this.pos.x, this.pos.y, this.lastPos.x, this.lastPos.y);
   }
   
@@ -95,8 +95,8 @@ class Point {
     
     float rads = spaces.get(closestIndex).radians;
     
-    this.acc.x += cos(rads) * 2;
-    this.acc.y += sin(rads) * 2;
+    this.acc.x += cos(rads);// * 2;
+    this.acc.y += sin(rads);// * 2;
     
     this.acc.limit(1);
     
